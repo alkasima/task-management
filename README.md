@@ -96,6 +96,8 @@ Run the test suite:
 ```bash
 php artisan test
 ```
+## API Documentantion (Postman)
+https://documenter.getpostman.com/view/18112964/2sAYBXBqxJ
 
 ## License
 

@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "unique-id",
+		"name": "Task Management API",
+		"description": "API documentation for Task Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "register"]
+						},
+						"description": "Register a new user"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "login"]
+						},
+						"description": "Login with existing credentials"
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/logout",
+							"host": ["{{base_url}}"],
+							"path": ["api", "logout"]
+						},
+						"description": "Logout and invalidate token"
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "List Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories"]
+						},
+						"description": "Get all categories"
+					}
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Work\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories"]
+						},
+						"description": "Create a new category"
+					}
+				},
+				{
+					"name": "Show Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/categories/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories", "{{category_id}}"]
+						},
+						"description": "Get a specific category"
+					}
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Work\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories", "{{category_id}}"]
+						},
+						"description": "Update a category"
+					}
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/categories/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories", "{{category_id}}"]
+						},
+						"description": "Delete a category"
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "List Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tasks?status=pending&category_id=1&search=keyword&due_date_from=2024-01-01&due_date_to=2024-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"description": "Filter by status (pending, in-progress, completed)"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "Filter by category"
+								},
+								{
+									"key": "search",
+									"value": "keyword",
+									"description": "Search in title and description"
+								},
+								{
+									"key": "due_date_from",
+									"value": "2024-01-01",
+									"description": "Filter by due date range (start)"
+								},
+								{
+									"key": "due_date_to",
+									"value": "2024-12-31",
+									"description": "Filter by due date range (end)"
+								}
+							]
+						},
+						"description": "Get all tasks with optional filters"
+					}
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Complete Project\",\n    \"description\": \"Finish the task management API\",\n    \"status\": \"pending\",\n    \"due_date\": \"2024-12-31\",\n    \"category_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks"]
+						},
+						"description": "Create a new task"
+					}
+				},
+				{
+					"name": "Show Task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tasks/{{task_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks", "{{task_id}}"]
+						},
+						"description": "Get a specific task"
+					}
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Task\",\n    \"description\": \"Updated description\",\n    \"status\": \"in-progress\",\n    \"due_date\": \"2024-12-31\",\n    \"category_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks/{{task_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks", "{{task_id}}"]
+						},
+						"description": "Update a task"
+					}
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tasks/{{task_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks", "{{task_id}}"]
+						},
+						"description": "Delete a task"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "token",
+			"value": "your_auth_token_here"
+		},
+		{
+			"key": "category_id",
+			"value": "1"
+		},
+		{
+			"key": "task_id",
+			"value": "1"
+		}
+	]
+}
